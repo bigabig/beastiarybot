@@ -118,12 +118,12 @@ def trade_inventory():
         for y in range(5):
             click_inventory(x, y, 0, right=False)
     pyautogui.keyUp('ctrl')
-    click_random_in_area(50, 616, 98, 17, random_time())
+    click_random_in_area(66, 625, 92, 13, random_time())
 
 
 def accept_trade():
     while True:
-        position = pyautogui.locateCenterOnScreen('img/accept_trade.png', confidence=0.9)
+        position = pyautogui.locateCenterOnScreen('img/accept_trade.png', grayscale=True, confidence=0.8)
         if position is not None:
             click_random_in_area(position.x - 120, position.y - 5, 90, 10, 0)
         time.sleep(1)
