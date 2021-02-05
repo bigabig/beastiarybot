@@ -95,7 +95,7 @@ def select_beast_orb(i):
     if int(i / 10) == 5:
         click_inventory(1, 0, random_time(), True)
     else:
-        click_inventory(0, int(i / 10), random_time(), True)
+        click_inventory(0, 4 - int(i / 10), random_time(), True)
 
 
 def select_beast():
