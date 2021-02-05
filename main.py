@@ -92,7 +92,10 @@ def open_inventory():
 
 
 def select_beast_orb(i):
-    click_inventory(0, int(i / 10), random_time(), True)
+    if int(i / 10) == 5:
+        click_inventory(1, 0, random_time(), True)
+    else:
+        click_inventory(0, int(i / 10), random_time(), True)
 
 
 def select_beast():
@@ -101,13 +104,22 @@ def select_beast():
 
 def itemize_beasts():
     i = 0
-    for x in range(12):
-        for y in range(5):
+    for y in range(5):
+        for x in range(10):
             select_beast_orb(i)
             sleep()
             select_beast()
             sleep()
-            click_inventory(11 - x, y, random_time())
+            click_inventory(11 - x, 4 - y, random_time())
+            sleep()
+            i = i + 1
+    for y in range(5):
+        for x in range(2):
+            select_beast_orb(i)
+            sleep()
+            select_beast()
+            sleep()
+            click_inventory(x, 4 - y, random_time())
             sleep()
             i = i + 1
 
