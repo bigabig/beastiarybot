@@ -137,7 +137,8 @@ def accept_trade():
     while True:
         position = pyautogui.locateCenterOnScreen('img/accept_trade.png', grayscale=True, confidence=0.8)
         if position is not None:
-            click_random_in_area(position.x - 120, position.y - 5, 90, 10, 0)
+            click_random_in_area(position.x - 120, position.y - 5, 90, 10, 0.1)
+            click_random_in_area(position.x - 120, position.y - 5, 90, 10, 0.1)
         time.sleep(1)
 
 
