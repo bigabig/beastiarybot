@@ -1,4 +1,5 @@
 import random
+import threading
 import time
 
 import pyautogui
@@ -100,13 +101,13 @@ def select_beast():
 
 def itemize_beasts():
     i = 0
-    for x in range(10):
+    for x in range(12):
         for y in range(5):
             select_beast_orb(i)
             sleep()
             select_beast()
             sleep()
-            click_inventory(x + 2, y, random_time())
+            click_inventory(11 - x, y, random_time())
             sleep()
             i = i + 1
 
@@ -115,11 +116,23 @@ def trade_inventory():
     pyautogui.keyDown('ctrl')
     for x in range(12):
         for y in range(5):
-            click_inventory(x, y, 0.05, right=False)
+            click_inventory(x, y, 0, right=False)
     pyautogui.keyUp('ctrl')
+    click_random_in_area(50, 616, 98, 17, random_time())
+
+
+def accept_trade():
+    while True:
+        position = pyautogui.locateCenterOnScreen('img/accept_trade.png', confidence=0.9)
+        if position is not None:
+            click_random_in_area(position.x - 120, position.y - 5, 90, 10, 0)
+        time.sleep(1)
 
 
 def main():
+    x = threading.Thread(target=accept_trade, daemon=True)
+    x.start()
+
     # Collect events until released
     with Listener(
             on_release=on_release) as listener:
@@ -129,7 +142,7 @@ def main():
 def on_release(key):
     print('{0} release'.format(
         key))
-    if key == Key.esc:
+    if key == Key.f8:
         # Stop listener
         return False
 
