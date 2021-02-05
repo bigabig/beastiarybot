@@ -128,7 +128,7 @@ def trade_inventory():
     pyautogui.keyDown('ctrl')
     for x in range(12):
         for y in range(5):
-            click_inventory(x, y, 0.05, right=False)
+            click_inventory(x, y, 0.02, right=False)
     pyautogui.keyUp('ctrl')
     click_random_in_area(67, 593, 84, 12, random_time())
 
